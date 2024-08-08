@@ -22,14 +22,20 @@ if choosen_type == "1":
     video_clip = VideoFileClip(video_path)
     audio_clip = AudioFileClip(audio_path)
 
-    ideo_clip = video_clip.set_audio(audio_clip)
+    final_clip = video_clip.set_audio(audio_clip)
 
-    output_path = 'output.mp4'
-    video_clip.write_videofile(output_path, codec='libx264', audio_codec='aac')
+    desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
+    output_path = os.path.join(desktop_path, 'output.mp4')
+
+    final_clip.write_videofile(output_path, codec='libx264', audio_codec='aac')
+
+    video_clip.close()
+    audio_clip.close()
+    final_clip.close()
 
     os.remove(video_path)
     os.remove(audio_path)
 
-    print("Done!")
+    print(f"Done! Video saved to {output_path}")
 else:
     print("Invalid Type")
