@@ -13,6 +13,8 @@ if choosen_type == "1":
 
     yt = YouTube(link)
 
+    video_title = yt.title.replace(" ", "_")
+
     video_stream = yt.streams.filter(res="1080p", mime_type="video/mp4").first()
     video_path = video_stream.download(filename='video.mp4')
 
@@ -25,7 +27,7 @@ if choosen_type == "1":
     final_clip = video_clip.set_audio(audio_clip)
 
     desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
-    output_path = os.path.join(desktop_path, 'output.mp4')
+    output_path = os.path.join(desktop_path, f'{video_title}.mp4')
 
     final_clip.write_videofile(output_path, codec='libx264', audio_codec='aac')
 
@@ -47,7 +49,7 @@ elif choosen_type == "2":
     desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
 
     audio_stream = yt.streams.filter(only_audio=True).first()
-    audio_path = audio_stream.download(filename='audio.mp3', output_path=desktop_path)
+    audio_path = audio_stream.download(filename=yt.title+'.mp3', output_path=desktop_path)
     print(f"Audio saved to {audio_path}")
 else:
     print("Invalid Type")
