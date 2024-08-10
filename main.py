@@ -2,7 +2,7 @@ from pytubefix import YouTube
 from moviepy.editor import VideoFileClip, AudioFileClip
 import os
 
-print("####### Choose Download Type #######\n[1] MP4\n[2] MP3\n")
+print("####### Choose Download Type #######\n[1] MP4\n[2] MP3\n[3] WAV\n")
 
 choosen_type = input("Type: ")
 
@@ -50,6 +50,18 @@ elif choosen_type == "2":
 
     audio_stream = yt.streams.filter(only_audio=True).first()
     audio_path = audio_stream.download(filename=yt.title+'.mp3', output_path=desktop_path)
+    print(f"Audio saved to {audio_path}")
+elif choosen_type == "3":
+    link = input("Link: ")
+
+    print("Downloading...")
+
+    yt = YouTube(link)
+
+    desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
+
+    audio_stream = yt.streams.filter(only_audio=True).first()
+    audio_path = audio_stream.download(filename=yt.title+'.wav', output_path=desktop_path)
     print(f"Audio saved to {audio_path}")
 else:
     print("Invalid Type")
