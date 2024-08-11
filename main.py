@@ -2,7 +2,7 @@ from pytubefix import YouTube
 from moviepy.editor import VideoFileClip, AudioFileClip
 import os
 
-print("\n####### Choose Download Type #######\nVideo:\n[1] MP4\n\nAudio:\n[2] MP3\n[3] WAV\n")
+print("\n\033[35m####### \033[0mChoose Download Type \033[35m#######\n\033[0mVideo:\n[\033[35m1\033[0m] MP4\n\nAudio:\n[\033[35m2\033[0m] MP3\n[\033[35m3\033[0m] WAV\n")
 
 choosen_type = input("Type: ")
 
