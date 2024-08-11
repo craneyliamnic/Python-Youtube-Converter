@@ -2,7 +2,7 @@ from pytubefix import YouTube
 from moviepy.editor import VideoFileClip, AudioFileClip
 import os
 
-print("\n\033[35m####### \033[0mChoose Download Type \033[35m#######\n\033[0mVideo:\n[\033[35m1\033[0m] MP4\n\nAudio:\n[\033[35m2\033[0m] MP3\n[\033[35m3\033[0m] WAV\n")
+print("\n\033[35m####### \033[0mChoose Download Type \033[35m#######\n\033[0mVideo:\n[\033[35m1\033[0m] MP4\n\nAudio:\n[\033[35m2\033[0m] MP3\n[\033[35m3\033[0m] WAV\n[\033[35m4\033[0m] OGG\n")
 
 choosen_type = input("Type: ")
 
@@ -62,6 +62,18 @@ elif choosen_type == "3":
 
     audio_stream = yt.streams.filter(only_audio=True).first()
     audio_path = audio_stream.download(filename=yt.title+'.wav', output_path=desktop_path)
+    print(f"Audio saved to {audio_path}")
+elif choosen_type == "4":
+    link = input("Link: ")
+
+    print("Downloading...")
+
+    yt = YouTube(link)
+
+    desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
+
+    audio_stream = yt.streams.filter(only_audio=True).first()
+    audio_path = audio_stream.download(filename=yt.title+'.ogg', output_path=desktop_path)
     print(f"Audio saved to {audio_path}")
 else:
     print("Invalid Type")
