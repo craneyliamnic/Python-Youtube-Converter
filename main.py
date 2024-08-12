@@ -6,13 +6,13 @@ print("\n\033[35m####### \033[0mChoose Download Type \033[35m#######\n\033[0mVid
 
 choosen_type = input("Type: ")
 
-link = input("Link: ")
-
-print("Downloading...")
-
-yt = YouTube(link)
-
 if choosen_type == "1":
+    link = input("Link: ")
+
+    print("Downloading...")
+
+    yt = YouTube(link)
+
     video_title = yt.title.replace(" ", "_")
 
     video_stream = yt.streams.filter(res="1080p", mime_type="video/mp4").first()
@@ -40,18 +40,36 @@ if choosen_type == "1":
 
     print(f"Done! Video saved to {output_path}")
 elif choosen_type == "2":
+    link = input("Link: ")
+
+    print("Downloading...")
+
+    yt = YouTube(link)
+
     desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
 
     audio_stream = yt.streams.filter(only_audio=True).first()
     audio_path = audio_stream.download(filename=yt.title+'.mp3', output_path=desktop_path)
     print(f"Audio saved to {audio_path}")
 elif choosen_type == "3":
+    link = input("Link: ")
+
+    print("Downloading...")
+
+    yt = YouTube(link)
+
     desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
 
     audio_stream = yt.streams.filter(only_audio=True).first()
     audio_path = audio_stream.download(filename=yt.title+'.wav', output_path=desktop_path)
     print(f"Audio saved to {audio_path}")
 elif choosen_type == "4":
+    link = input("Link: ")
+
+    print("Downloading...")
+
+    yt = YouTube(link)
+
     desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
 
     audio_stream = yt.streams.filter(only_audio=True).first()
