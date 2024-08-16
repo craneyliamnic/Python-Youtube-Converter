@@ -13,6 +13,7 @@ print(
     f"[{colors.PURPLE}2{colors.NORMAL}] MP3\n"
     f"[{colors.PURPLE}3{colors.NORMAL}] WAV\n"
     f"[{colors.PURPLE}4{colors.NORMAL}] OGG\n"
+    f"[{colors.PURPLE}5{colors.NORMAL}] ACC\n"
 )
 
 choosen_type = input("Type: ")
@@ -85,6 +86,18 @@ elif choosen_type == "4":
 
     audio_stream = yt.streams.filter(only_audio=True).first()
     audio_path = audio_stream.download(filename=yt.title+'.ogg', output_path=desktop_path)
+    print(f"Audio saved to {audio_path}")
+elif choosen_type == "5":
+    link = input("Link: ")
+
+    print("Downloading...")
+
+    yt = YouTube(link)
+
+    desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
+
+    audio_stream = yt.streams.filter(only_audio=True).first()
+    audio_path = audio_stream.download(filename=yt.title+'.acc', output_path=desktop_path)
     print(f"Audio saved to {audio_path}")
 else:
     print("Invalid Type")
