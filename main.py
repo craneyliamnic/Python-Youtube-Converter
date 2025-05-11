@@ -1,5 +1,5 @@
 from pytubefix import YouTube
-from moviepy.editor import VideoFileClip, AudioFileClip
+from moviepy import VideoFileClip, AudioFileClip
 import os
 
 class colors:
@@ -36,7 +36,7 @@ if choosen_type == "1":
     video_clip = VideoFileClip(video_path)
     audio_clip = AudioFileClip(audio_path)
 
-    final_clip = video_clip.set_audio(audio_clip)
+    final_clip = video_clip.with_audio(audio_clip)
 
     desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
     output_path = os.path.join(desktop_path, f'{video_title}.mp4')
